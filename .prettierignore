@@ -1,0 +1,7 @@
+node_modules
+.pnpm-store
+dist
+legacy
+work
+pnpm-lock.yaml
+preview-desktop.png

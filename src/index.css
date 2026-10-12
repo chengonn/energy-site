@@ -1,0 +1,8 @@
+/* 匯入順序：工具樣式 → 色彩主題 → 全域 → 頁面 → 響應式覆寫。 */
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './styles/theme.css';
+@import './styles/base.css';
+@import './styles/sections.css';
+@import './styles/responsive.css';
+@import './styles/interaction.css';
