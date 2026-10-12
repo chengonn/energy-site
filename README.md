@@ -1,5 +1,18 @@
 # 衡能 React 網站（v2）
 
+## GitHub Pages 部署
+
+Repo：`chengonn/energy-site`，部署分支：`master`。
+預計網站網址：https://chengonn.github.io/energy-site/ （部署成功後才會上線）。
+
+1. GitHub repo → Settings → Pages → Build and deployment → Source 選擇 **GitHub Actions**。
+2. 推送 `master`，或進入 Actions → Deploy website to GitHub Pages → Run workflow。
+3. 等待 build 與 deploy 都成功，再開啟網站。
+
+`.github/workflows/deploy-pages.yml` 會安裝依賴、建置並發布 `dist/`，不用手動提交產物或建立 gh-pages 分支。GitHub Actions 建置時設定 `VITE_BASE_PATH=/energy-site/`，本機預設路徑仍為 `/`。
+
+若之後改 repo 名稱、使用 `chengonn.github.io` 根站或自訂網域，需同步調整 workflow 的 `VITE_BASE_PATH`。表單仍為示範；GitHub Pages 只託管這個靜態網站。
+
 目前已改為 React + Vite + Tailwind CSS 4，使用官方 shadcn/ui 元件與 Lucide 圖示，並以 Three.js 加入真實 WebGL 3D 主視覺。
 
 ## 開啟專案
