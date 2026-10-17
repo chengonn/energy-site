@@ -1,10 +1,14 @@
+import { useLanguage } from '@/i18n/LanguageContext';
 import { useRef } from 'react';
 import { ArrowLeft, ArrowRight, MoveHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
-import { improvementDirections } from '@/data/improvementDirections';
+import { improvementDirections as originalImprovementDirections } from '@/data/improvementDirections';
 
 export default function ImprovementGallery() {
+  const { t, localize } = useLanguage();
+  const improvementDirections = localize(originalImprovementDirections);
+
   const railRef = useRef(null);
   const dragRef = useRef(null);
 
@@ -46,16 +50,17 @@ export default function ImprovementGallery() {
       <div className="gallery-heading">
         <div>
           <span className="eyebrow">EXPLORE THE POSSIBILITIES</span>
-          <h3>改善，可能從這裡開始。</h3>
+          <h3>{t('改善，可能從這裡開始。')}</h3>
         </div>
         <div className="gallery-controls">
           <span>
-            <MoveHorizontal size={15} /> 拖曳探索
+            <MoveHorizontal size={15} />
+            {t('拖曳探索')}
           </span>
           <Button
             variant="outline"
             size="icon"
-            aria-label="上一個改善方向"
+            aria-label={t('上一個改善方向')}
             onClick={() => moveGallery(-1)}
           >
             <ArrowLeft />
@@ -63,7 +68,7 @@ export default function ImprovementGallery() {
           <Button
             variant="outline"
             size="icon"
-            aria-label="下一個改善方向"
+            aria-label={t('下一個改善方向')}
             onClick={() => moveGallery(1)}
           >
             <ArrowRight />
@@ -75,7 +80,7 @@ export default function ImprovementGallery() {
         className="gallery-rail"
         tabIndex={0}
         role="region"
-        aria-label="改善方向，可左右滑動或使用方向鍵"
+        aria-label={t('改善方向，可左右滑動或使用方向鍵')}
         onPointerDown={startDrag}
         onPointerMove={drag}
         onPointerUp={stopDrag}
@@ -107,7 +112,7 @@ export default function ImprovementGallery() {
         )}
       </div>
       <p className="gallery-note">
-        以上為評估切入點示意，實際改善方向需依場域與資料確認。
+        {t('以上為評估切入點示意，實際改善方向需依場域與資料確認。')}
       </p>
     </div>
   );

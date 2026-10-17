@@ -126,3 +126,14 @@ pnpm build         # 驗證正式建置
 維護位置：`src/styles/interaction.css`、`src/hooks/`、`src/components/ImprovementGallery.jsx`、`src/data/improvementDirections.js` 與 `ProcessSection.jsx`。既有場域切換、CTA 與表單邏輯保持可用。
 
 若 5173 已被占用，Vite 會改用其他埠號，例如 5174；以啟動終端機顯示的 Local 網址為準。
+
+## 中英文切換
+
+頁首與全螢幕選單提供「中 / EN」按鈕，預設為繁體中文。選擇會儲存於瀏覽器 localStorage（heng-language），重新開啟後沿用；儲存受限時仍可在當頁切換。
+
+- src/i18n/LanguageContext.jsx：語言狀態、內容翻譯、HTML lang 與頁面標題／描述。
+- src/i18n/en.json：中文原文對應的英文翻譯，更新原文時請同步補上對應鍵值。
+- src/components/LanguageSwitcher.jsx：可鍵盤操作的語言按鈕。
+- src/styles/language.css：英文與手機排版調整。
+
+切換不重新載入頁面，不重建 3D 場景，保留已填表單內容與場域選項。示範表單的完成訊息也隨語言更新。語言偏好是唯一新增儲存的項目；表單內容仍不儲存、不傳送。

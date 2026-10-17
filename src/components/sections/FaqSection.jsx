@@ -1,22 +1,26 @@
+import { useLanguage } from '@/i18n/LanguageContext';
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
-import { faqs } from '@/data/siteContent';
+import { faqs as originalFaqs } from '@/data/siteContent';
 import SectionHeading from '@/components/SectionHeading';
 export default function FaqSection() {
+  const { t, localize } = useLanguage();
+  const faqs = localize(originalFaqs);
+
   return (
     <section className="section faq-section" id="questions">
       <div>
         <SectionHeading number="?" english="FAQ">
-          常見問題
+          {t('常見問題')}
         </SectionHeading>
         <h2>
-          開始之前，
+          {t('開始之前，')}
           <br />
-          <span>你可能想知道。</span>
+          <span>{t('你可能想知道。')}</span>
         </h2>
       </div>
       <Accordion type="single" collapsible>

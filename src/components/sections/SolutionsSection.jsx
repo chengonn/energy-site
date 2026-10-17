@@ -1,23 +1,31 @@
+import { useLanguage } from '@/i18n/LanguageContext';
 import { Check } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { scenarios } from '@/data/siteContent';
+import { scenarios as originalScenarios } from '@/data/siteContent';
 import { analytics } from '@/lib/analytics';
 import ImprovementGallery from '@/components/ImprovementGallery';
 import CallToAction from '@/components/CallToAction';
 import SectionHeading from '@/components/SectionHeading';
 export default function SolutionsSection() {
+  const { t, localize } = useLanguage();
+  const scenarios = localize(originalScenarios);
+
   return (
     <section className="section solution-section" id="solutions">
       <SectionHeading number="03" english="FIND YOUR STARTING POINT">
-        理解方案
+        {t('理解方案')}
       </SectionHeading>
       <div className="section-intro">
         <h2>
-          現場各有不同，
+          {t('現場各有不同，')}
           <br />
-          <span>解法也應該如此。</span>
+          <span>{t('解法也應該如此。')}</span>
         </h2>
-        <p>選擇你的場域，看看評估可以從哪裡切入。實際範圍依設備、資料與營運需求確認。</p>
+        <p>
+          {t(
+            '選擇你的場域，看看評估可以從哪裡切入。實際範圍依設備、資料與營運需求確認。',
+          )}
+        </p>
       </div>
       <Tabs
         defaultValue="factory"
@@ -37,12 +45,13 @@ export default function SolutionsSection() {
               <div className="facility-kicker">FACILITY / SYSTEM VIEW</div>
               <scenario.icon size={110} strokeWidth={0.7} />
               <div className="facility-nodes">
-                {['需求', '設備', '資料'].map((x) => (
+                {[t('需求'), t('設備'), t('資料')].map((x) => (
                   <span key={x}>{x}</span>
                 ))}
               </div>
               <div className="facility-foot">
-                <span className="live-dot" /> 從系統關係，找到改善切入點
+                <span className="live-dot" />
+                {t('從系統關係，找到改善切入點')}
               </div>
             </div>
             <div className="scenario-copy">
@@ -58,7 +67,7 @@ export default function SolutionsSection() {
                 ))}
               </ul>
               <CallToAction placement={'solution-' + scenario.id} className="outline-cta">
-                評估我的場域
+                {t('評估我的場域')}
               </CallToAction>
             </div>
           </TabsContent>

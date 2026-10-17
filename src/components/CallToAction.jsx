@@ -1,12 +1,11 @@
+import { useLanguage } from '@/i18n/LanguageContext';
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
-export default function CallToAction({
-  placement,
-  children = '申請初步評估',
-  className = '',
-}) {
+export default function CallToAction({ placement, children, className = '' }) {
+  const { t } = useLanguage();
+
   const buttonRef = useRef(null);
   useEffect(() => {
     if (!window.IntersectionObserver) return;
@@ -25,7 +24,7 @@ export default function CallToAction({
   return (
     <Button ref={buttonRef} asChild className={className}>
       <a href="#assessment" onClick={() => analytics.track('cta_click', { placement })}>
-        {children}
+        {children ?? t('申請初步評估')}
         <ArrowUpRight size={17} />
       </a>
     </Button>

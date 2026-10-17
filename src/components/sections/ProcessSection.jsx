@@ -1,6 +1,7 @@
+import { useLanguage } from '@/i18n/LanguageContext';
 import { useRef } from 'react';
 import { ArrowDown, ArrowUpRight, MessageSquare, ScanLine, Route } from 'lucide-react';
-import { processSteps } from '@/data/siteContent';
+import { processSteps as originalProcessSteps } from '@/data/siteContent';
 import SectionHeading from '@/components/SectionHeading';
 import useScrollProgress from '@/hooks/useScrollProgress';
 import useMediaQuery from '@/hooks/useMediaQuery';
@@ -8,6 +9,9 @@ import useMediaQuery from '@/hooks/useMediaQuery';
 const stepIcons = [MessageSquare, ScanLine, Route];
 
 export default function ProcessSection() {
+  const { t, localize } = useLanguage();
+  const processSteps = localize(originalProcessSteps);
+
   const sectionRef = useRef(null);
   const progress = useScrollProgress(sectionRef);
   const cinematic = useMediaQuery(
@@ -30,20 +34,21 @@ export default function ProcessSection() {
     <section className="section process-story" id="process" ref={sectionRef}>
       <div className="story-sticky">
         <SectionHeading number="→" english="SCROLL TO DISCOVER">
-          合作流程
+          {t('合作流程')}
         </SectionHeading>
         <div className="story-top">
           <h2>
-            把下一步，
+            {t('把下一步，')}
             <br />
-            <span>一點一點變清楚。</span>
+            <span>{t('一點一點變清楚。')}</span>
           </h2>
           <a href="#questions" className="story-skip">
-            跳過流程 <ArrowDown size={14} />
+            {t('跳過流程')}
+            <ArrowDown size={14} />
           </a>
         </div>
         <div className="story-stage">
-          <div className="story-navigation" aria-label="流程階段">
+          <div className="story-navigation" aria-label={t('流程階段')}>
             {processSteps.map((step, index) => (
               <button
                 key={step.label}
@@ -77,7 +82,7 @@ export default function ProcessSection() {
                     </span>
                     <h3>{step.title}</h3>
                     <p>{step.description}</p>
-                    <small>深入診斷與執行方案另行討論。</small>
+                    <small>{t('深入診斷與執行方案另行討論。')}</small>
                   </div>
                 </article>
               );
@@ -85,11 +90,11 @@ export default function ProcessSection() {
           </div>
         </div>
         <div className="story-bottom">
-          <span>滾動，探索每一步</span>
+          <span>{t('滾動，探索每一步')}</span>
           <div
             className="story-progress"
             role="progressbar"
-            aria-label="流程瀏覽進度"
+            aria-label={t('流程瀏覽進度')}
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={Math.round(progress * 100)}

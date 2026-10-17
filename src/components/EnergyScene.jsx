@@ -1,7 +1,10 @@
+import { useLanguage } from '@/i18n/LanguageContext';
 import { useEffect, useRef, useState } from 'react';
 import { Pause, Play } from 'lucide-react';
 
 export default function EnergyScene() {
+  const { t } = useLanguage();
+
   const mount = useRef(null);
   const [enabled, setEnabled] = useState(true);
   const [fallback, setFallback] = useState(false);
@@ -51,7 +54,7 @@ export default function EnergyScene() {
         className="scene-canvas"
         ref={mount}
         role="img"
-        aria-label="互動 3D 能源核心與環繞軌道"
+        aria-label={t('互動 3D 能源核心與環繞軌道')}
       />
       <div className="scene-label top">
         <span className="live-dot" /> ENERGY SYSTEM / 001
@@ -60,10 +63,10 @@ export default function EnergyScene() {
       <button
         className="scene-toggle"
         onClick={() => setEnabled(!enabled)}
-        aria-label={enabled ? '暫停 3D 動畫' : '播放 3D 動畫'}
+        aria-label={enabled ? t('暫停 3D 動畫') : t('播放 3D 動畫')}
       >
         {enabled ? <Pause size={13} /> : <Play size={13} />}{' '}
-        {fallback ? '靜態視覺' : enabled ? '暫停動畫' : '播放動畫'}
+        {fallback ? t('靜態視覺') : enabled ? t('暫停動畫') : t('播放動畫')}
       </button>
     </div>
   );
